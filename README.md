@@ -35,16 +35,16 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // Connect to Firestore
 const db = new Firestore({
   // adjust these values:
-  projectId: "cloudconvert-bot-257814",
+  projectId: "YOUR_PROJECT_ID",
   keyFilename: "firestore-keyfile.json",
 });
 
 // Create bot and register session middleware
-const bot = new Bot<MyContext>("797115886:AAEsOSRAqzpWBpQocm-_VcfT6S_HgRslf_g");
+const bot = new Bot<MyContext>("");
 bot.use(
   session({
     initial: () => ({ counter: 0 }),
-    storage: adapter(db.collection("test-sessions")),
+    storage: adapter(db.collection("sessions")),
   })
 );
 
