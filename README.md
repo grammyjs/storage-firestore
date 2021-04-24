@@ -23,36 +23,38 @@ You should now have:
 Put those values into the following example code:
 
 ```ts
-import { Bot, session, SessionFlavor } from 'grammy'
-import { adapter } from '@grammyjs/storage-firestore'
-import { Firestore } from '@google-cloud/firestore'
+import { Bot, Context, session, SessionFlavor } from "grammy";
+import { adapter } from "@grammyjs/storage-firestore";
+import { Firestore } from "@google-cloud/firestore";
 
 interface SessionData {
-    counter: number
+  counter: number;
 }
-type MyContext = Context & SessionFlavor<SessionData>
+type MyContext = Context & SessionFlavor<SessionData>;
 
 // Connect to Firestore
 const db = new Firestore({
-    // adjust these values:
-    projectId: 'YOUR_PROJECT_ID',
-    keyFilename: 'firestore-keyfile.json',
-})
+  // adjust these values:
+  projectId: "cloudconvert-bot-257814",
+  keyFilename: "firestore-keyfile.json",
+});
 
 // Create bot and register session middleware
-const bot = new Bot('')
+const bot = new Bot<MyContext>("797115886:AAEsOSRAqzpWBpQocm-_VcfT6S_HgRslf_g");
 bot.use(
-    session({
-        initial: () => ({ counter: 0 }),
-        storageAdapter: adapter(db.collection('sessions')),
-    })
-)
+  session({
+    initial: () => ({ counter: 0 }),
+    storage: adapter(db.collection("test-sessions")),
+  })
+);
 
 // Register your usual middleware, and start the bot
-bot.command('stats', ctx => reply(`already got ${ctx.session.counter} photos!`))
-bot.on('photo', ctx => ctx.session.counter++)
+bot.command("stats", (ctx) =>
+  ctx.reply(`Already got ${ctx.session.counter} photos!`)
+);
+bot.on(":photo", (ctx) => ctx.session.counter++);
 
-bot.start()
+bot.start();
 ```
 
 On firestore, you are billed per operation.

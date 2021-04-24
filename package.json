@@ -2,8 +2,8 @@
     "name": "@grammyjs/storage-firestore",
     "version": "1.0.0",
     "description": "Google Firestore storage adapter for grammY",
-    "main": "built/index.js",
-    "types": "built/index.d.ts",
+    "main": "out/index.js",
+    "types": "out/index.d.ts",
     "scripts": {
         "prepare": "npm run build",
         "build": "tsc",
