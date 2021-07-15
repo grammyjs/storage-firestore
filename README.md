@@ -60,6 +60,6 @@ bot.start();
 On firestore, you are billed per operation.
 If your bot does not need the session data for most of the messages it processes, this would cause a lot of superfluous reads and writes.
 Imagine your bot is in a group chat where it only counts photos but otherwise ignores all messages.
-Then it would not makes sense to retrieve the session data for every request and write it back.
+Then it would not make sense to retrieve the session data for every request, and to write back the identical data.
 The solution is to use the built-in lazy mode of grammY, so just replace `bot.use(session ...)` by `bot.use(lazySession ...)`, and remember to `await ctx.session` whenever you use it.
 You must also flavor your context with `LazySessionFlavor` instead of just `SessionFlavor`.
