@@ -1,3 +1,7 @@
+# Archived!!!
+
+All storages moved to our new monorepository, contained all adapters inside of it. Check it out: https://github.com/grammyjs/storages
+
 # Google Firestore storage adapter for grammY
 
 Storage adapter that can be used to [store your session data](https://grammy.dev/plugins/session.html) on [Google Cloud Firestore](https://cloud.google.com/firestore) when using sessions.
